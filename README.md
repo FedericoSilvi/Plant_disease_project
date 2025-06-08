@@ -1,78 +1,79 @@
 # 🍅 Tomato Leaf Disease Classification
 
-Progetto di classificazione multiclasse delle malattie della pianta di pomodoro da immagini delle foglie.
+Multiclass classification project for tomato plant leaf diseases using leaf images.
 
-## 👨‍👩‍👧‍👦 Autori
-- Marco Caruso  
-- Silvia Giannetti  
-- Giacomo Alberto Napolitano   
-- Federico Silvi   
-
+## 👨‍👩‍👧‍👦 Authors
+- Marco Caruso – 65836  
+- Silvia Giannetti – 54978  
+- Giacomo Alberto Napolitano – 51578  
+- Federico Silvi – 64257  
+Academic Year: 2024/2025
 
 ---
 
-## 🎯 Obiettivo
-Realizzare un classificatore multiclasse per identificare malattie delle foglie di pomodoro tramite immagini, sfruttando tecniche di Image Processing, Feature Extraction e Machine Learning.
+## 🎯 Objective
+The goal is to develop a multiclass classifier to identify tomato leaf diseases from images using Image Processing, Feature Extraction, and Machine Learning techniques.
 
 ---
 
 ## 📁 Dataset
-- **Fonte**: [PlantVillage Dataset](https://www.kaggle.com/datasets/abdallahalidev/plantvillage-dataset)
-- **Classi selezionate**: 7 malattie + 1 classe di foglia sana
-- **Formato**: immagini a colori 256×256
-- **Numero immagini**: 160 per classe
+- **Source**: [PlantVillage Dataset](https://www.kaggle.com/datasets/abdallahalidev/plantvillage-dataset)
+- **Selected classes**: 7 disease classes + 1 healthy class
+- **Format**: Color images, 256×256 resolution
+- **Images per class**: 160 (balanced dataset)
 
 ---
 
 ## 🖼️ Image Processing
-Segmentazione foglie tramite tecniche graph-based:
-- Approccio con **GraphCut** con semi di foreground/background generati automaticamente
-- Post-processing per migliorare la qualità della maschera
-- Alcune classi sottoposte a trattamento aggiuntivo per rimuovere l’ombra
+Leaf segmentation was performed using a graph-based approach:
+- Initial attempt with **GrabCut** was partially effective
+- Final solution: **GraphCut** using auto-generated foreground/background seeds
+- Post-processing to clean up artifacts
+- Shadow removal for specific classes (e.g., Spider Mites, Yellow Curl Virus)
 
 ---
 
 ## 📊 Feature Extraction
-Feature derivate da immagini segmentate:
+Extracted features from segmented images:
 - **LBP** (Local Binary Patterns)
 - **GLCM** (Gray-Level Co-occurrence Matrix)
-- **Gabor filter** (manuale e tramite **AlexNet**)
+- **Gabor Filters** (manual + via **AlexNet**)
 
-Dataset generati con:
-- Immagini originali e filtrate (Non-Local Means)
-- Combinazioni multiple di feature (D0–D4)
+Generated multiple datasets (D0–D4) using:
+- Raw and denoised images (Non-Local Means)
+- Combined and incremental feature sets
 
 ---
 
 ## 🤖 Machine Learning
 ### Supervised
-- Modelli: KNN, Random Forest, SVM, XGBoost
-- Pipeline: Normalizzazione + PCA/KBest + Grid Search con CV
-- **Miglior modello**: SVM/XGBoost con accuracy fino al **97.42%** con majority voting
+- Models: KNN, Random Forest, SVM, XGBoost
+- Pipeline: Normalization + PCA/KBest + Grid Search with cross-validation
+- **Best performance**: SVM/XGBoost with up to **97.42% accuracy** using majority voting ensemble
 
 ### Unsupervised
-- Modelli: K-Means, GMM
-- Metrica: Silhouette Score ≈ **0.47**
+- Models: K-Means, GMM
+- Metric: Silhouette Score ≈ **0.47**
 
 ---
 
-## 🔬 Risultati principali
+## 🔬 Key Results
 
-| Segmentazione       | Metodo        | Accuracy   |
-|---------------------|---------------|------------|
-| Foglia segmentata   | Ensemble      | **97.42%** |
-| No segmentazione    | Ensemble      | 96.72%     |
-| Solo sfondo         | Ensemble      | 93.05%     |
-
----
-
-## 📌 Conclusioni
-- La segmentazione è cruciale per evitare che le feature siano influenzate dallo sfondo.
-- I metodi supervised superano nettamente quelli unsupervised.
-- Il modello finale ensemble raggiunge prestazioni comparabili alla letteratura di settore.
+| Segmentation Type    | Method    | Accuracy   |
+|----------------------|-----------|------------|
+| Full leaf segmented  | Ensemble  | **97.42%** |
+| No segmentation      | Ensemble  | 96.72%     |
+| Background segmented | Ensemble  | 93.05%     |
 
 ---
 
-## 🔗 Riferimenti
-- [PlantVillage Dataset su Kaggle](https://www.kaggle.com/datasets/abdallahalidev/plantvillage-dataset)
-- [PubMed Study Reference](https://pmc.ncbi.nlm.nih.gov/articles/PMC11790621/)
+## 📌 Conclusions
+- Segmentation is essential to prevent models from learning spurious correlations from the background.
+- Supervised methods significantly outperform unsupervised ones.
+- The final ensemble model achieved results comparable to state-of-the-art benchmarks in the literature.
+
+---
+
+## 🔗 References
+- [PlantVillage Dataset on Kaggle](https://www.kaggle.com/datasets/abdallahalidev/plantvillage-dataset)
+- [Benchmark Study (PubMed)](https://pmc.ncbi.nlm.nih.gov/articles/PMC11790621/)
