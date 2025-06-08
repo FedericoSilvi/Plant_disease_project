@@ -2,7 +2,7 @@
 
 Multiclass classification project for tomato plant leaf diseases using leaf images.
 
-## 👨‍👩‍👧‍👦 Authors
+## 📝 Authors
 - Marco Caruso   
 - Silvia Giannetti   
 - Giacomo Alberto Napolitano 
