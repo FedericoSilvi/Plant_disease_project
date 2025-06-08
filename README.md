@@ -3,11 +3,11 @@
 Multiclass classification project for tomato plant leaf diseases using leaf images.
 
 ## 👨‍👩‍👧‍👦 Authors
-- Marco Caruso – 65836  
-- Silvia Giannetti – 54978  
-- Giacomo Alberto Napolitano – 51578  
-- Federico Silvi – 64257  
-Academic Year: 2024/2025
+- Marco Caruso   
+- Silvia Giannetti   
+- Giacomo Alberto Napolitano 
+- Federico Silvi   
+
 
 ---
 
