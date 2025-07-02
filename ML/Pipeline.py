@@ -151,7 +151,8 @@ if(len(categorical_features)>0):
     raise ValueError("Error in dataset type")
 
 target = df_all[target_column]
-#encoding (no categorical feature, maybe just add a check for the prof). Maybe is needed encoding of the target
+#Maybe is needed encoding of the target
+
 label_encoder = LabelEncoder()
 target = pd.Series(label_encoder.fit_transform(target))
 
